@@ -1,0 +1,253 @@
+/* --- MODERN UI & UX DESIGN --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&display=swap');
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #050011;
+    font-family: 'Orbitron', sans-serif;
+    touch-action: none;
+    /* Critical for mobile touch */
+    user-select: none;
+}
+
+/* Moving Star Background */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: zoom 4s linear infinite;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+@keyframes zoom {
+    from {
+        transform: translateY(-200px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+#game-area {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    overflow: hidden;
+}
+
+/* HUD (Heads Up Display) */
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    /* Click through UI */
+    z-index: 100;
+}
+
+.hud-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hearts {
+    color: #ff3366;
+    letter-spacing: 5px;
+}
+
+.score-val {
+    color: #00d2ff;
+    font-weight: 900;
+}
+
+/* The Player */
+#player {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    filter: drop-shadow(0 0 10px #00d2ff);
+    transition: left 0.08s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Thruster Engine Effect */
+#player::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    width: 15px;
+    height: 30px;
+    background: linear-gradient(to bottom, #00d2ff, transparent);
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: thruster 0.1s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes thruster {
+    from {
+        height: 20px;
+        opacity: 0.8;
+    }
+
+    to {
+        height: 35px;
+        opacity: 1;
+    }
+}
+
+#player.shielded {
+    filter: drop-shadow(0 0 20px #00ff00);
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    background: rgba(0, 255, 0, 0.1);
+}
+
+/* Falling Items */
+.item {
+    position: absolute;
+    font-size: 35px;
+    will-change: top, transform;
+    z-index: 15;
+}
+
+/* Screenshake Class */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(6px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-8px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(8px, 0, 0);
+    }
+}
+
+/* Pop-up Text */
+.popup {
+    position: absolute;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    animation: floatUp 0.8s forwards;
+    pointer-events: none;
+    z-index: 50;
+    text-shadow: 0 0 5px #000;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Modern Overlay Menu */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 0, 17, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    backdrop-filter: blur(8px);
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0;
+    background: linear-gradient(90deg, #00d2ff, #ff3366);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.btn {
+    margin-top: 30px;
+    padding: 15px 50px;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #00d2ff;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00d2ff, inset 0 0 10px #00d2ff;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #00d2ff;
+    color: #000;
+    box-shadow: 0 0 40px #00d2ff;
+    transform: scale(1.1);
+}
+
+#tutorial {
+    color: #aaa;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6;
+}

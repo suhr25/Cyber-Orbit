@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Galaxy Rush</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="star-field"></div>
+
+    <div id="game-area">
+        <div id="hud">
+            <div class="hud-panel">
+                <span>SCORE</span>
+                <span id="score" class="score-val">0</span>
+            </div>
+            <div class="hud-panel">
+                <span id="hearts" class="hearts">❤️❤️❤️</span>
+            </div>
+        </div>
+
+        <div id="player">🚀</div>
+
+        <div id="overlay">
+            <h1 id="title-text">NEON GALAXY</h1>
+            <div id="tutorial">
+                Drag to Move<br>
+                Collect Stars ⭐<br>
+                Catch Shields 🛡️<br>
+                Avoid Meteors ☄️
+            </div>
+            <button class="btn" onclick="game.start()">PLAY</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
